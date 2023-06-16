@@ -64,6 +64,7 @@ trait JsoniterJsonDecoders {
     }
   }(Scope.of("default").get)
 
+  //fixme
   private val stringSequenceCodec: JsonValueCodec[List[String]] = JsonCodecMaker.make
 
   private[jsoniter] implicit val audienceDecoder: JsonValueCodec[Audience] = customDecoderTry[Audience] { jsonReader =>
