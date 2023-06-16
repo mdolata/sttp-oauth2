@@ -135,7 +135,7 @@ lazy val `oauth2-jsoniter` = crossProject(JSPlatform, JVMPlatform)
     name := "sttp-oauth2-jsoniter",
     libraryDependencies ++= Seq(
       "com.github.plokhotnyuk.jsoniter-scala" %%% "jsoniter-scala-core" % Versions.jsoniter,
-      "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-macros" % Versions.jsoniter % "compile-internal"
+      "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-macros" % Versions.jsoniter
     ),
     mimaSettings,
     compilerPlugins,
@@ -150,7 +150,7 @@ lazy val docs = project
   .in(file("mdoc")) // important: it must not be docs/
   .settings(
     mdocVariables := Map(
-      "VERSION" -> { if (isSnapshot.value) previousStableVersion.value.get else version.value }
+      "VERSION" -> { if (isSnapshot.value) previousStableVersion.value.getOrElse("Unknown") else version.value }
     )
   )
   .dependsOn(oauth2.jvm)
